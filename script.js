@@ -8,7 +8,7 @@ const shareLink = document.querySelector('#shareButton')
 const deepStats = document.querySelector('#deepStats')
 const numberBox = document.querySelector('.numbers')
 
-const NumberFormatter = Intl.NumberFormat('en-GB', { style: 'decimal' })
+const NumFormat = Intl.NumberFormat('en-GB', { style: 'decimal' })
 
 async function refreshData() {
     const res = await fetch('https://dev.ixnoah.live/backend/tf2-bots/').catch(() => {
@@ -16,8 +16,8 @@ async function refreshData() {
     })
     const data = await res.json()
     
-    deepStats.textContent = `(${data.steamPlayers} on steam - ${data.teamworkPlayers} in games) * 0.9 = ${data.estimatedBots} estimated bots`
-    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumberFormatter.format(data.estimatedBots)} bots playing Team Fortress 2!`))
+    deepStats.textContent = `(${NumFormat.format(data.steamPlayers)} steam players - ${NumFormat.format(data.teamworkPlayers)} "real" players) * 0.9 = ${NumFormat.format(data.estimatedBots)} estimated bots`
+    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumFormat.format(data.estimatedBots)} bots playing Team Fortress 2!`))
 
     numberBox.textContent = '' // clear the inside of the number box
     data.estimatedBots.toString().split('').forEach(num => {
