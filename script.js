@@ -13,19 +13,17 @@ const NumberFormatter = Intl.NumberFormat('en-GB', { style: 'decimal' })
 async function refreshData() {
     const res = await fetch('https://dev.ixnoah.live/backend/tf2-bots/')
     const data = await res.json()
-
-    const estimatedBots = Math.floor((data.steamPlayers - data.teamworkPlayers) * (( 100 - percentPlayersInMenus ) / 100))
     
-    deepStats.textContent = `(${data.steamPlayers} on steam - ${data.teamworkPlayers} in games) * 0.9 = ${estimatedBots} estimated bots`
-    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumberFormatter.format(estimatedBots)} bots playing Team Fortress 2!`))
+    deepStats.textContent = `(${data.steamPlayers} on steam - ${data.teamworkPlayers} in games) * 0.9 = ${data.estimatedBots} estimated bots`
+    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumberFormatter.format(data.estimatedBots)} bots playing Team Fortress 2!`))
 
     numberBox.textContent = '' // clear the inside of the number box
-    estimatedBots.toString().split('').forEach(num => {
-        numberBox.innerHTML += `<img src="./assets/counter/${num}.png" height="100">`
+    data.estimatedBots.toString().split('').forEach(num => {
+        numberBox.innerHTML += `<img src="./assets/counter/${num}.png" alt="The number ${num}, helping to form ${data.estimatedBots}." height="100">`
     })
 }
 
-if (navigator.canShare()) {
+if (navigator?.canShare()) {
     shareLink.textContent = 'Click to share this!'
     shareLink.setAttribute('href', '#')
     shareLink.registerListener('click', () => {

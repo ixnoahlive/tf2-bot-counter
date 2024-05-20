@@ -46,6 +46,8 @@ a {
     border-radius: 1rem;
 
     text-align: center;
+
+    margin: 1rem;
 }
 
 .numbers {
@@ -55,4 +57,16 @@ a {
     gap: 0.5rem;
     justify-content: center;
     border-radius: 0.5rem;
+    height: 100px;
+}
+
+
+.numbers > img {
+    height: 100%;
+}
+
+@media ( min-width: 768px ) {    
+    .numbers {
+        height: 100px;
+    }
 }
