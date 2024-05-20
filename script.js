@@ -23,6 +23,8 @@ async function refreshData() {
     data.estimatedBots.toString().split('').forEach(num => {
         numberBox.innerHTML += `<img src="./assets/counter/${num}.png" alt="The number ${num}, helping to form ${data.estimatedBots}." height="100">`
     })
+
+    document.body.removeAttribute('style')
 }
 
 // apparently webshare api isnt fully supported... oops?
