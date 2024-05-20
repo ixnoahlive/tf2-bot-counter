@@ -11,7 +11,9 @@ const numberBox = document.querySelector('.numbers')
 const NumberFormatter = Intl.NumberFormat('en-GB', { style: 'decimal' })
 
 async function refreshData() {
-    const res = await fetch('https://dev.ixnoah.live/backend/tf2-bots/')
+    const res = await fetch('https://dev.ixnoah.live/backend/tf2-bots/').catch(() => {
+        document.write('Oh no! Looks like we couldn\'t fetch the data from the server. This\'ll hopefully be fixed this ASAP! T_T')
+    })
     const data = await res.json()
     
     deepStats.textContent = `(${data.steamPlayers} on steam - ${data.teamworkPlayers} in games) * 0.9 = ${data.estimatedBots} estimated bots`
@@ -23,12 +25,13 @@ async function refreshData() {
     })
 }
 
-if (navigator?.canShare()) {
-    shareLink.textContent = 'Click to share this!'
-    shareLink.setAttribute('href', '#')
-    shareLink.registerListener('click', () => {
-        navigator.share()
-    })
-}
+// apparently webshare api isnt fully supported... oops?
+// if (navigator?.canShare()) {
+//     shareLink.textContent = 'Click to share this!'
+//     shareLink.setAttribute('href', '#')
+//     shareLink.registerListener('click', () => {
+//         navigator.share()
+//     })
+// }
 
 refreshData()
