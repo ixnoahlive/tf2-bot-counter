@@ -81,6 +81,10 @@ a {
     margin-bottom: 5vh;
 }
 
+#deepStats {
+    cursor: help;
+}
+
 @media ( min-width: 1024px ) {    
     .numbers {
         height: 100px;
