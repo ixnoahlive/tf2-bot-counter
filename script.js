@@ -16,7 +16,7 @@ async function refreshData() {
     })
     const data = await res.json()
     
-    deepStats.textContent = `(${NumFormat.format(data.steamPlayers)} steam players - ${NumFormat.format(data.teamworkPlayers)} "real" players) * 0.9 = ${NumFormat.format(data.estimatedBots)} estimated bots`
+    deepStats.textContent = `(${NumFormat.format(data.steamPlayers)} steam - ${NumFormat.format(data.teamworkPlayers)} in servers) * 0.9 = ${NumFormat.format(data.estimatedBots)} estimated bots`
     shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumFormat.format(data.estimatedBots)} bots playing Team Fortress 2!`))
 
     numberBox.textContent = '' // clear the inside of the number box
