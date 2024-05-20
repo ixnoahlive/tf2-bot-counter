@@ -33,7 +33,10 @@ body {
     height: 100vh;
 
     flex-direction: column;
-    gap: 1rem;
+}
+
+.auto-height {
+    height: auto
 }
 
 a {
@@ -56,12 +59,12 @@ a {
 
 .numbers {
     width: 100%;
-    background-color: #000000bb;
+    background-color: #00000044;
     display: flex;
     gap: 0.5rem;
     justify-content: center;
     border-radius: 0.5rem;
-    height: 100px;
+    height: 70px;
 }
 
 
@@ -69,7 +72,16 @@ a {
     height: 100%;
 }
 
-@media ( min-width: 768px ) {    
+.videos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 5vh;
+}
+
+@media ( min-width: 1024px ) {    
     .numbers {
         height: 100px;
     }
