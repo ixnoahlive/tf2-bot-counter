@@ -10,14 +10,20 @@ const numberBox = document.querySelector('.numbers')
 
 const NumFormat = Intl.NumberFormat('en-GB', { style: 'decimal' })
 
+const backgrounds = [
+    'yeti',
+    'intel',
+    'doublecross',
+]
+
 async function refreshData() {
     const res = await fetch('https://dev.ixnoah.live/backend/tf2-bots/').catch(() => {
         document.write('Oh no! Looks like we couldn\'t fetch the data from the server. This\'ll hopefully be fixed this ASAP! T_T')
     })
     const data = await res.json()
     
-    deepStats.textContent = `(${NumFormat.format(data.steamPlayers)} steam - ${NumFormat.format(data.teamworkPlayers)} in servers) * 0.9 = ${NumFormat.format(data.estimatedBots)} estimated bots`
-    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumFormat.format(data.estimatedBots)} bots playing Team Fortress 2!`))
+    deepStats.innerHTML = `There are ${NumFormat.format(data.steamPlayers)} steam players and ${NumFormat.format(data.teamworkPlayers)} players in real servers.<br>Last updated ${Math.floor((Date.now() - data.lastUpdated) / 1000)} second(s) ago!`
+    shareLink.setAttribute('href', 'https://x.com/intent/post?url=https%3A%2F%2Fixnoah.live%2Ftf2&text=' + encodeURI(`There's about ${NumFormat.format(data.estimatedBots)} bots playing Team Fortress 2! VALVe, pls fix!`))
 
     numberBox.textContent = '' // clear the inside of the number box
     data.estimatedBots.toString().split('').forEach(num => {
@@ -25,6 +31,8 @@ async function refreshData() {
     })
 
     document.body.removeAttribute('style')
+    document.body.style.backgroundImage = `url('./assets/bg/` + backgrounds[Math.floor(Math.random() * backgrounds.length)] + `.png' )`
+
 }
 
 // apparently webshare api isnt fully supported... oops?

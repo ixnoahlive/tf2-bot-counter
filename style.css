@@ -11,12 +11,12 @@
 }
 
 body {
-    background-image: url('./assets/bg.png');
+    background-color: #222;
     background-size: cover;
     background-position: center 0%;
     background-repeat: no-repeat;
 
-    font-family: 'TF2';
+    font-family: 'TF2', sans-serif;
     color: #f1eadb;
 
     margin: 0;
@@ -59,7 +59,7 @@ a {
 
 .numbers {
     width: 100%;
-    background-color: #00000044;
+    background-color: #33252488;
     display: flex;
     gap: 0.5rem;
     justify-content: center;
@@ -78,7 +78,7 @@ a {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 5vh;
+    margin-bottom: 8vh;
 }
 
 #deepStats {
@@ -112,3 +112,13 @@ body::-webkit-scrollbar-thumb {
                        var(--sb-track-color);
     }
 }
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: rgb(245, 123, 66);;
+  }
+  
+  ::selection {
+    color: white;
+    background: rgb(245, 123, 66);
+  }
